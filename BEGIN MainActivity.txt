@@ -1,0 +1,36 @@
+BEGIN MainActivity
+On Program Launch:
+
+CALL CounterThreads() to initialize the threads.
+End MainActivity
+
+BEGIN CounterThreads (Concurrency Logic)
+Declare Variables:
+
+DECLARE countUpThread as a new Thread executing CountUp.
+DECLARE countDownThread as a new Thread executing CountDown.
+Thread Management:
+
+START countUpThread.
+WAIT for countUpThread to complete using join().
+START countDownThread.
+End CounterThreads
+
+BEGIN CountUp (Thread 1 Logic - Counting Up)
+For i from 0 to 20:
+
+DISPLAY: "Thread 1 counting up: i".
+PAUSE for 500ms using Thread.sleep() to simulate work.
+IF INTERRUPTED:
+DISPLAY: "CountUp interrupted".
+End CountUp
+
+BEGIN CountDown (Thread 2 Logic - Counting Down)
+For i from 20 to 0:
+
+DISPLAY: "Thread 2 counting down: i".
+PAUSE for 500ms using Thread.sleep() to simulate work.
+IF INTERRUPTED:
+DISPLAY: "CountDown interrupted".
+End CountDown
+
